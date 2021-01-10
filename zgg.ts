@@ -1,12 +1,14 @@
 const Koa = require('koa')
-const {RouterInit,ControllerInit} = require('./loader.ts')
+const {RouterInit,ControllerInit,ServiceInit} = require('./loader.ts')
 
 module.exports = class Zgg{
     app
     router
     controller
+    service
     constructor(props) {
         this.app = new Koa(props)
+        this.service = ServiceInit()
         this.controller = ControllerInit(this)
         this.router = RouterInit(this)
         this.app.use(this.router.routes())

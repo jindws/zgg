@@ -1,8 +1,10 @@
 module.exports = {
-    "get /": async ctx => {
-        ctx.body = "⽤户⾸⻚";
+    "get /": async app => {
+        const id = await app.service.user.getId()
+        app.ctx.body = `userId:${id}`;
     },
-    "get /info": ctx => {
-        ctx.body = "⽤户详情⻚⾯";
+    "get /info": async app => {
+        const ids = await app.service.user.getIds()
+        app.ctx.body = `userIds:${ids}`;
     }
 };

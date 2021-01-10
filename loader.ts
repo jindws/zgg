@@ -27,23 +27,36 @@ function RouterInit(app){//传入的this
         Object.entries(routes).map(([key,value])=>{
             let [method,_path] = key.split(' ')
             _path.endsWith('/')&&(_path = _path.substr(0,_path.length-1))
-            router[method](`${prefix}${_path}`,value)
+            // router[method](`${prefix}${_path}`,value)
+            router[method](`${prefix}${_path}`,async ctx=>{
+                app.ctx = ctx;//挂在上下文到app
+                await value(app)//路由处理接收app
+            })
         })
     });
     return router;
 }
 
-function ControllerInit(){
+function ControllerInit(app){//添加app
     const controllers = {}
     // 读取控制器⽬录
     loadData('./controller',(filename,controller)=>{
         // 添加路由
-        controllers[filename] = controller
+        controllers[filename] = controller(app)
     });
     return controllers;
 }
 
+function ServiceInit(){
+    const services = {}
+    loadData('./service',(filename,service)=>{
+        services[filename] = service
+    });
+    return services;
+}
+
 module.exports = {
     RouterInit,
-    ControllerInit
+    ControllerInit,
+    ServiceInit
 }

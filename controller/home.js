@@ -1,8 +1,12 @@
-module.exports = {
+module.exports = app => ({
     index: async ctx => {
-        ctx.body = "controller⾸⻚";
+        // ctx.body = "controller⾸⻚";
+        const id = await app.service.user.getId()
+        app.ctx.body = `controller userId:${id}`;
     },
-    detail: ctx => {
-        ctx.body = "controller详情页";
+    detail: async ctx => {
+        // ctx.body = "controller详情页";
+        const ids = await app.service.user.getIds()
+        app.ctx.body = `controller userIds:${ids}`;
     }
-}
+})
