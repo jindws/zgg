@@ -59,6 +59,14 @@ function ServiceInit(){
 const Sequelize = require("sequelize");
 function ConfigInit(app) {
     loadData("config", (filename, conf) => {
+        // 如果有middleware选项，则按其规定循序应⽤中间件
+        if (conf.middleware) {
+            conf.middleware.forEach(mid => {
+                const midPath = path.resolve(__dirname, "middleware", mid + '.ts');
+                app.$app.use(require(midPath));
+            });
+        }
+
         if (conf.db) {
             app.$db = new Sequelize(conf.db);
 
