@@ -15,11 +15,15 @@ function loadData(dirPath,callback){
     })
 }
 
-function RouterInit(){
+function RouterInit(app){//传入的this
     const router = new Router()
 
     loadData('./routes',(filename,routes)=>{
         const prefix = filename === 'index' ? '' : '/'+filename
+
+        // 判断路由类型，若为函数需传递app进去
+        routes = typeof routes == "function" ? routes(app) : routes;
+
         Object.entries(routes).map(([key,value])=>{
             let [method,_path] = key.split(' ')
             _path.endsWith('/')&&(_path = _path.substr(0,_path.length-1))
@@ -29,6 +33,17 @@ function RouterInit(){
     return router;
 }
 
+function ControllerInit(){
+    const controllers = {}
+    // 读取控制器⽬录
+    loadData('./controller',(filename,controller)=>{
+        // 添加路由
+        controllers[filename] = controller
+    });
+    return controllers;
+}
+
 module.exports = {
     RouterInit,
+    ControllerInit
 }
