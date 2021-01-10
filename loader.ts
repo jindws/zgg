@@ -80,9 +80,18 @@ function ConfigInit(app) {
     });
 }
 
+const schedule = require("node-schedule");
+function ScheduleInit() {
+    // 读取控制器⽬录
+    loadData("schedule", (filename, scheduleConfig) => {
+        schedule.scheduleJob(scheduleConfig.interval,scheduleConfig.handler);
+    });
+}
+
 module.exports = {
     RouterInit,
     ControllerInit,
     ServiceInit,
-    ConfigInit
+    ConfigInit,
+    ScheduleInit,
 }

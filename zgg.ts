@@ -1,5 +1,5 @@
 const Koa = require('koa')
-const {RouterInit,ControllerInit,ServiceInit,ConfigInit} = require('./loader.ts')
+const {RouterInit,ControllerInit,ServiceInit,ConfigInit,ScheduleInit} = require('./loader.ts')
 
 module.exports = class Zgg{
     $app
@@ -9,6 +9,7 @@ module.exports = class Zgg{
     constructor(props) {
         this.$app = new Koa(props)
         ConfigInit(this)
+        ScheduleInit()
         this.service = ServiceInit()
         this.controller = ControllerInit(this)
         this.router = RouterInit(this)
