@@ -24,7 +24,8 @@
     "moment": "^2.29.1",
     "prettier": "^2.2.1",
     "egg-validate": "^2.0.2",
-    "egg-bcrypt": "^1.1.0"
+    "egg-bcrypt": "^1.1.0",
+    "egg-jwt": "^3.1.7"
   },
   "engines": {
     "node": ">=10.0.0"

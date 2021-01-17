@@ -55,6 +55,12 @@ module.exports = (appInfo) => {
   //     bufferMaxEntries: 0,
   //   },
   // };
+  //config/config.default.js
+  config.jwt = {
+    secret: "zgg",
+    enable: true, // default is false
+    match: /^\/api/, // 需要鉴权的接口
+  };
 
   return {
     ...config,

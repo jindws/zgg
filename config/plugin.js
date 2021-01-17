@@ -19,9 +19,15 @@ module.exports = {
     enable: true,
     package: "egg-validate",
   },
-  //config/plugin.js
+
   bcrypt: {
     enable: true,
     package: "egg-bcrypt",
+  },
+
+  //config/plugin.js
+  jwt: {
+    enable: true,
+    package: "egg-jwt",
   },
 };
