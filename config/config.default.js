@@ -28,6 +28,7 @@ module.exports = (appInfo) => {
       username: "root",
       password: "root",
       database: "main",
+      delegate: "model",
     },
   };
 
