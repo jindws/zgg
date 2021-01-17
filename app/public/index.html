@@ -22,7 +22,7 @@
         <div><a href="https://www.easy-mock.com/project/5ce3669a733e8967c7b2e902">EasyMock地址</a></div>
         <div>
             <el-button @click="create">创建用户</el-button>
-            <el-button @click="list">用户列表</el-button>
+<!--            <el-button @click="list">用户列表</el-button>-->
             <el-button @click="del">删除用户</el-button>
         </div>
         <div>
@@ -67,9 +67,9 @@
             methods: {
                 async create() {
                     await axios.post('/api/user', {
-                        mobile: '13611388415',
-                        password: '111111',
-                        realName: '老夏',
+                        mobile: '18868833333',
+                        password: '333333',
+                        realName: '',
                     })
                 },
                 async list() {
@@ -84,8 +84,8 @@
                 },
                 async login() {
                     const res = await axios.post('/auth/jwt/login', {
-                        mobile: '13611388415',
-                        password: '111111'
+                        mobile: '18868877777',
+                        password: '12345678'
                     })
                     localStorage.setItem("token", res.data.data.token);
                 },

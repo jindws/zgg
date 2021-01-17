@@ -50,65 +50,6 @@ class UserService extends Service {
   }
 
   /**
-   * 查看用户列表
-   * @param {*} payload
-   */
-  async index(payload) {
-    const { currentPage, pageSize, isPaging, search } = payload;
-    let res = [];
-    let count = 0;
-    let skip = (Number(currentPage) - 1) * Number(pageSize || 10);
-    if (isPaging) {
-      if (search) {
-        res = await this.ctx.model.User.find({ mobile: { $regex: search } })
-          .populate("role")
-          .skip(skip)
-          .limit(Number(pageSize))
-          .sort({ createdAt: -1 })
-          .exec();
-        count = res.length;
-      } else {
-        res = await this.ctx.model.User.find({})
-          .populate("role")
-          .skip(skip)
-          .limit(Number(pageSize))
-          .sort({ createdAt: -1 })
-          .exec();
-        count = await this.ctx.model.User.count({}).exec();
-      }
-    } else {
-      if (search) {
-        res = await this.ctx.model.User.find({ mobile: { $regex: search } })
-          .populate("role")
-          .sort({ createdAt: -1 })
-          .exec();
-        count = res.length;
-      } else {
-        res = await this.ctx.model.User.find({})
-          .populate("role")
-          .sort({ createdAt: -1 })
-          .exec();
-        count = await this.ctx.model.User.count({}).exec();
-      }
-    }
-    // 整理数据源 -> Ant Design Pro
-    let data = res.map((e, i) => {
-      const jsonObject = Object.assign({}, e._doc);
-      jsonObject.key = i;
-      jsonObject.password = "Are you ok?";
-      jsonObject.createdAt = this.ctx.helper.formatTime(e.createdAt);
-      return jsonObject;
-    });
-
-    return {
-      count: count,
-      list: data,
-      pageSize: Number(pageSize),
-      currentPage: Number(currentPage),
-    };
-  }
-
-  /**
    * 删除多个用户
    * @param {*} payload
    */

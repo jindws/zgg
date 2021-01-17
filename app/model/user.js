@@ -3,9 +3,16 @@ module.exports = (app) => {
 
   // if (process.env.test) await this.app.model.sync({ force: true });
 
-  return app.model.define("user", {
+  const User = app.model.define("user", {
     realName: STRING(30),
     mobile: BIGINT,
     password: STRING(100),
   });
+
+  User.find = async function (data) {
+    return this.findAll({
+      where: data,
+    });
+  };
+  return User;
 };
