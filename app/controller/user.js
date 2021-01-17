@@ -14,6 +14,10 @@ class UserController extends Controller {
    */
   async create() {
     const { ctx } = this;
+
+    // 校验参数
+    ctx.validate(ctx.rule.createUserRequest);
+
     const res = { abc: 123 };
     // 设置响应内容和响应状态码
     ctx.helper.success({ ctx, res });

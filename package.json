@@ -22,7 +22,8 @@
     "eslint": "^5.13.0",
     "eslint-config-egg": "^7.1.0",
     "moment": "^2.29.1",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "egg-validate": "^2.0.2"
   },
   "engines": {
     "node": ">=10.0.0"
