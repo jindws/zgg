@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /** @type Egg.EggPlugin */
 module.exports = {
@@ -8,6 +8,10 @@ module.exports = {
   // }
   sequelize: {
     enable: true,
-    package: 'egg-sequelize',
-  }
+    package: "egg-sequelize",
+  },
+  swaggerdoc: {
+    enable: true,
+    package: "egg-swagger-doc-feat",
+  },
 };

@@ -19,7 +19,9 @@
     "egg-ci": "^1.11.0",
     "egg-mock": "^3.21.0",
     "eslint": "^5.13.0",
-    "eslint-config-egg": "^7.1.0"
+    "eslint-config-egg": "^7.1.0",
+    "prettier": "^2.2.1",
+    "egg-swagger-doc-feat": "^2.2.14"
   },
   "engines": {
     "node": ">=10.0.0"
