@@ -13,15 +13,11 @@ class UserController extends Controller {
    * @response 200 baseResponse 创建成功
    */
   async create() {
-    const { ctx } = this;
-
-    // 校验参数
-    ctx.validate(ctx.rule.createUserRequest);
-
-    const res = { abc: 123 };
-    // 设置响应内容和响应状态码
-    ctx.helper.success({ ctx, res });
-    // ctx.body = "user controller";
+    const { ctx, service } = this;
+    ctx.validate(ctx.rule.createUserRequest); // 校验参数
+    const payload = ctx.request.body || {}; // 组装参数
+    const res = await service.user.create(payload); //调⽤ Service 进⾏行行业务处理理
+    ctx.helper.success({ ctx, res }); // 设置响应内容和响应状态码
   }
 }
 module.exports = UserController;

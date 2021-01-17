@@ -1,13 +1,14 @@
-const Service = require('egg').Service
+const Service = require("egg").Service;
 
 class UserService extends Service {
-    async getAll() {
-        const users = await this.ctx.model.User.findAll()
-        return users.map(itm=>({
-            id:itm.id,
-            name:itm.name,
-            age:itm.age,
-        }))
-    }
+  /**
+   * 创建⽤用户
+   * @param {*} data
+   */
+  async create(data) {
+    const { ctx } = this;
+    data.password = await this.ctx.genHash(data.password);
+    return ctx.model.User.create(data);
+  }
 }
-module.exports = UserService
+module.exports = UserService;

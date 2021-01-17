@@ -46,6 +46,16 @@ module.exports = (appInfo) => {
     enable: true,
   };
 
+  // config.mongoose = {
+  //   url: "mongodb://127.0.0.1:27017/zgg",
+  //   options: {
+  //     // useMongoClient: true,
+  //     autoReconnect: true,
+  //     reconnectTries: Number.MAX_VALUE,
+  //     bufferMaxEntries: 0,
+  //   },
+  // };
+
   return {
     ...config,
     ...userConfig,

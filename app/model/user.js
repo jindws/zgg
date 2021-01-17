@@ -1,11 +1,13 @@
-module.exports = app => {
-    const { STRING,INTEGER,DATE } = app.Sequelize;
+module.exports = async (app) => {
+  const { STRING, DATE, BIGINT } = app.Sequelize;
 
-    return app.model.define(
-        "user",{
-            name: STRING(30),
-            age: INTEGER,
-            createdAt: DATE,
-            updatedAt: DATE,
-        });
-  };
+  if(process.env.test) await this.app.model.sync({ force: true });
+
+  return app.model.define("user", {
+    realName: STRING(30),
+    mobile: BIGINT,
+    createdAt: DATE,
+    updatedAt: DATE,
+    password: STRING(100),
+  });
+};
