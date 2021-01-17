@@ -25,15 +25,15 @@ class AppBootHook {
     // don't need to block the app boot. console.log('========Init Data=========')
     const ctx = await this.app.createAnonymousContext();
     // await ctx.model.User.remove();
-    // if (process.env.test) {
-    //   await this.app.model.sync({ force: true });
-    //
-    //   await ctx.service.user.create({
-    //     mobile: "18868877777",
-    //     password: "12345678",
-    //     realName: "zgg",
-    //   });
-    // }
+    if (process.env.test) {
+      await this.app.model.sync({ force: true });
+
+      await ctx.service.user.create({
+        mobile: "18868877777",
+        password: "12345678",
+        realName: "zgg",
+      });
+    }
   }
   async serverDidReady() {}
   async beforeClose() {
