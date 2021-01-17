@@ -14,6 +14,7 @@ class UserController extends Controller {
    */
   async create() {
     const { ctx } = this;
+    aa;
     ctx.body = "user controller";
   }
 }
