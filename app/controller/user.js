@@ -14,8 +14,10 @@ class UserController extends Controller {
    */
   async create() {
     const { ctx } = this;
-    aa;
-    ctx.body = "user controller";
+    const res = { abc: 123 };
+    // 设置响应内容和响应状态码
+    ctx.helper.success({ ctx, res });
+    // ctx.body = "user controller";
   }
 }
 module.exports = UserController;
