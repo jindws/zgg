@@ -31,9 +31,19 @@ function RouterInit(app){//传入的this
             // router[method](`${prefix}${_path}`,value)
             router[method](`${prefix}${_path}`,async ctx=>{
                 app.ctx = ctx;//挂在上下文到app
+                // @ts-ignore
                 await value(app)//路由处理接收app
             })
         })
+
+        // Object.keys(routes).map(key=>{
+        //     let [method,_path] = key.split(' ')
+        //     _path.endsWith('/')&&(_path = _path.substr(0,_path.length-1))
+        //     router[method](`${prefix}${_path}`,async ctx=>{
+        //         app.ctx = ctx;//挂在上下文到app
+        //         await routes[key](app)//路由处理接收app
+        //     })
+        // })
     });
     return router;
 }
